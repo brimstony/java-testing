@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Testing Best Practices - Prototype</title>
+
+		<meta name="author" content="Tony Brimeyer">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/preso.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>vagrant up!</h1>
+					<h4>managing development environments</h4>
+					<p style="text-align: left;">
+						Zach Arlen <br> (zach.arlen@zirous.com)
+					</p>
+					<p style="text-align:right;">
+					   Chad Thompson <br> (chad.thompson@zirous.com)
+					</p>
+				</section>
+
+				<section>
+					<img src="img/vagrant_hippie.png">
+					<h4><a href="http://vagrantup.com">http://vagrantup.com</a></h4>
+					<aside class="notes">
+						Added here as the last time you'll probably see the 
+						'vagrant hippie'.
+					</aside>
+				</section>
+				
+				<section>
+				  <section>
+				     <h2>you're going to need...</h2>
+				  </section>
+				  <section>
+				    <a href=""><img src="img/oraclevirtualbox.png" style="height: 600px;"></a>
+				  </section>
+				  <section>
+				     <a href="http://vagrantup.com"><img src="img/vagrantup.png" style="height: 600px;"></a>
+				  </section>
+				  <section>
+				    <h1>A vagrant "box"</h1>
+				    <h3>.. or a repository of them
+				  </section>
+				  
+				  <section>
+				    <h2>... and nice to have</h2>
+				      <p class="fragment" style="font-size: 90px; text-align: right;">SSH tools</p>
+				      <p class="fragment" style="font-size: 90px;">version control</p>
+				      <p class="fragment" style="font-size:90px; text-align:left;">
+				        *nix-fu
+				      </p>
+				    </ol>
+				  </section>
+				</section>
+				
+				<!-- The Basics -->
+				<section>
+				<h3 style="text-align: left ;"> Initalize the Environment</h3><br/>
+				  					<pre><code contenteditable style="font-size: 64px; padding-top: 30px; padding-bottom: 30px;">$ vagrant init</code></pre>
+				 <br/>
+				<h3 style="text-align: left;">Specify the proper 'box', then</h3> 	<br/>				
+				  					<pre><code contenteditable style="font-size: 64px; padding-top: 30px; padding-bottom: 30px;">$ vagrant up</code></pre>
+				
+				</section>
+				
+				<section>
+				  <section>
+				    <h1>demo</h1>
+				    <h3>simple vagrant</h3>
+				  </section>
+				  <section>
+				    <img src="img/koala.jpg">
+				  </section>
+				</section>
+				
+								
+				<!-- Provisioners -->
+				<section>
+				  <section>
+				    <h1>Provisioners</h1>
+				  </section>
+				  <section>
+				    A <b>provisioner</b> is the scripting tool that allows you 
+				    to install software, move files and run scripts on your virtual
+				    machine.
+				  </section>
+				  <section>
+				    <a href="http://www.opscode.com/chef/"><img src="img/chef.png" style="height: 500px; border: 0px;"/></a>
+				  </section>
+				  <section>
+				    <a href="http://puppetlabs.com"><img src="img/puppet.png" style=" border: 0px;"/></a>
+				  </section>
+				  <section>
+				    <b>Chef</b> and <b>Puppet</b> are both open-source, Ruby-based
+				    environments for provisioning multiple (or a single) environment.
+				  </section>
+				</section>
+				
+				<!-- Demo -->
+				<section>
+				   <h1>demo</h1>
+				   <h3>Provisioning Java 1.5 &amp; OC4J</h3>
+				</section>
+				
+				<!-- Case Study -->
+				<section>
+				  <h1>VagrantPress</h1>
+				  <p>A case study in provisioning a WordPress development environment</p>
+				  <p><a href="http://vagrantpress.org">http://vagrantpress.org</a>
+				</section>
+				
+				<section>
+				  <img src="img/jobs-koala.png"/>
+				  <h1>thank you!</h1>
+				  <a href="https://github.com/chad-thompson/vagrant-presentation/blob/gh-pages/background.md">Background Notes & Links</a>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

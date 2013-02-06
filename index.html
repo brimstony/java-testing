@@ -1,179 +1,248 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+<head>
+<meta charset="utf-8">
 
-		<title>Testing Best Practices - Prototype</title>
+<title>Testing Best Practices - Prototype</title>
 
-		<meta name="author" content="Tony Brimeyer">
+<meta name="author" content="Tony Brimeyer">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent" />
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/preso.css" id="theme">
+<link rel="stylesheet" href="css/reveal.min.css">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+<link rel="stylesheet" href="css/theme/sky.css">
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+	document.write('<link rel="stylesheet" href="css/print/'
+			+ (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper')
+			+ '.css" type="text/css" media="print">');
+</script>
 
-		<!--[if lt IE 9]>
+<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
-	</head>
+</head>
 
-	<body>
+<body>
 
-		<div class="reveal">
+	<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
 
+			<section>
+				<h1>testing best practices</h1>
+				<h4>group discussion</h4>
+			</section>
+
+			<section>
+				<h2>who are we...</h2>
+			</section>
+
+			<section>
+				<h2>...and what are we doing here?</h2>
+			</section>
+
+			<section>
+				<h2>Goals:</h2>
+			</section>
+
+			<section>
+				<h3>create "testable" code</h3>
+				<pre>
+					<code class="java">TestableCode instanceof GoodCode == false</code>
+				</pre>
+				...but
+				<pre> <code class="java">GoodCode instanceof TestableCode == true</code>
+				</pre>
+			</section>
+
+			<section>
+				<h3>developer workflow</h3>
+				Integrating testing into the development workflow
+			</section>
+
+			<section>
+				<h3>tools</h3>
+				<img src="img/toolbox.jpg">
+			</section>
+			<section>
+				<img src="img/koala.jpg">
+			</section>
+
+			<section>
 				<section>
-					<h1>test slide!</h1>
-					<h4>managing development environments</h4>
-					<p style="text-align: left;">
-						Zach Arlen <br> (zach.arlen@zirous.com)
-					</p>
-					<p style="text-align:right;">
-					   Chad Thompson <br> (chad.thompson@zirous.com)
-					</p>
+					<h2>create "testable" code</h2>
+					<a
+						href="http://misko.hevery.com/attachments/Guide-Writing%20Testable%20Code.pdf">Google
+						Engineer's Guide to Writing testable code</a>
+				</section>
+				<section>
+					<h3>problem: class does too much</h3>
+					<h4>why that’s bad:</h4>
+					<ul>
+						<li>Hard to debug</li>
+						<li>Hard to test</li>
+						<li>Non-extensible system</li>
+						<li>Difficult for new resources and hard to hand off</li>
+					</ul>
+				</section>
+				<section>
+					<h3>problem: class does too much</h3>
+					<h4>why that’s bad:</h4>
+					<ul>
+						<li>Not subject to altering behavior via standard mechanisms:
+							decorator, strategy, subclassing: you end up adding another
+							conditional test</li>
+						<li>Hard to give a name to describe what the class does.
+							Whenever struggling with a name, the code is telling you that the
+							responsibilities are muddled. When objects have a clear name, it
+							is easy to keep them focused and shear off any excess baggage.</li>
+					</ul>
+				</section>
+				<section>
+					<h3>problem: class does too much</h3>
+					<h4>how to tell</h4>
+					Try to sum up what a class does in a single phrase. If this phrase
+					includes “AND” it’s probably doing too much.
+				</section>
+				<section>
+					<h3>solution: class does too much</h3>
+					<h4>
+						Class-responsibility-collaboration <b>(CRC)</b> card
+					</h4>
+					<img src="img/crc_card.png">
+					<p>"If it fits, it ships!"</p>
+				</section>
+				<section>
+					<h3>solution: class does too much</h3>
+					<h4>Reduce Cyclomatic Complexity: Number of paths through a
+						code base</h4>
+					<ul>
+						<li>Higher complexity is harder to test</li>
+						<li>High complexity is tied to low cohesion (degree to which
+							the elements of a module belong together.)</li>
+					</ul>
+					<img src="img/cc.png">
+				</section>
+				<section>
+					<h3>problem: constructor does real work</h3>
+					<img src="img/di_code.png">
+				</section>
+				<section>
+					<h3>solution: constructor does real work</h3>
+					<h4>Dependency Injection</h4>
+					Outside the scope of what we want to talk about... (but look at
+					Spring and Guice).
+				</section>
+				<section>
+					<h3>moe money moe problems?</h3>
+					Continue to look at PDF
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>developer workflow</h2>
+					<h3>modifying workflow to encourage testing</h3>
+					<ul>
+						<li class="fragment">start thinking about features in the
+							context of "how do we test that??"</li>
+						<li class="fragment">
+					<b>think outside the container:</b> You don’t need to start the
+						Web container to run code (even database code)!
+						</li>
+						</ul>
+				</section>
+				<section>
+					<h2>developer workflow</h2>
+					<ul>
+						<li class="fragment"><b>business logic tests:</b> Fast,
+							Repeatable (automatable??)</li>
+						<li class="fragment"><b>database CRUD tests:</b> Slow,
+							Unrepeatable (non-automatable??)</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+					<h2>tools</h2>
+					<h3>right tool for the right job</h3>
+					<ul>
+						<li class="fragment">JUnit</li>
+						<li class="fragment">Mockito/PowerMock</li>
+						<li class="fragment">EclEmma <br/><img class="fragment" src="img/emma.png"/></li>
+						
+						</ul>
 				</section>
 
-				<section>
-					<img src="img/vagrant_hippie.png">
-					<h4><a href="http://vagrantup.com">http://vagrantup.com</a></h4>
-					<aside class="notes">
-						Added here as the last time you'll probably see the 
-						'vagrant hippie'.
-					</aside>
-				</section>
-				
-				<section>
-				  <section>
-				     <h2>you're going to need...</h2>
-				  </section>
-				  <section>
-				    <a href=""><img src="img/oraclevirtualbox.png" style="height: 600px;"></a>
-				  </section>
-				  <section>
-				     <a href="http://vagrantup.com"><img src="img/vagrantup.png" style="height: 600px;"></a>
-				  </section>
-				  <section>
-				    <h1>A vagrant "box"</h1>
-				    <h3>.. or a repository of them
-				  </section>
-				  
-				  <section>
-				    <h2>... and nice to have</h2>
-				      <p class="fragment" style="font-size: 90px; text-align: right;">SSH tools</p>
-				      <p class="fragment" style="font-size: 90px;">version control</p>
-				      <p class="fragment" style="font-size:90px; text-align:left;">
-				        *nix-fu
-				      </p>
-				    </ol>
-				  </section>
-				</section>
-				
-				<!-- The Basics -->
-				<section>
-				<h3 style="text-align: left ;"> Initalize the Environment</h3><br/>
-				  					<pre><code contenteditable style="font-size: 64px; padding-top: 30px; padding-bottom: 30px;">$ vagrant init</code></pre>
-				 <br/>
-				<h3 style="text-align: left;">Specify the proper 'box', then</h3> 	<br/>				
-				  					<pre><code contenteditable style="font-size: 64px; padding-top: 30px; padding-bottom: 30px;">$ vagrant up</code></pre>
-				
-				</section>
-				
-				<section>
-				  <section>
-				    <h1>demo</h1>
-				    <h3>simple vagrant</h3>
-				  </section>
-				  <section>
-				    <img src="img/koala.jpg">
-				  </section>
-				</section>
-				
-								
-				<!-- Provisioners -->
-				<section>
-				  <section>
-				    <h1>Provisioners</h1>
-				  </section>
-				  <section>
-				    A <b>provisioner</b> is the scripting tool that allows you 
-				    to install software, move files and run scripts on your virtual
-				    machine.
-				  </section>
-				  <section>
-				    <a href="http://www.opscode.com/chef/"><img src="img/chef.png" style="height: 500px; border: 0px;"/></a>
-				  </section>
-				  <section>
-				    <a href="http://puppetlabs.com"><img src="img/puppet.png" style=" border: 0px;"/></a>
-				  </section>
-				  <section>
-				    <b>Chef</b> and <b>Puppet</b> are both open-source, Ruby-based
-				    environments for provisioning multiple (or a single) environment.
-				  </section>
-				</section>
-				
-				<!-- Demo -->
-				<section>
-				   <h1>demo</h1>
-				   <h3>Provisioning Java 1.5 &amp; OC4J</h3>
-				</section>
-				
-				<!-- Case Study -->
-				<section>
-				  <h1>VagrantPress</h1>
-				  <p>A case study in provisioning a WordPress development environment</p>
-				  <p><a href="http://vagrantpress.org">http://vagrantpress.org</a>
-				</section>
-				
-				<section>
-				  <img src="img/jobs-koala.png"/>
-				  <h1>thank you!</h1>
-				  <a href="https://github.com/chad-thompson/vagrant-presentation/blob/gh-pages/background.md">Background Notes & Links</a>
-				</section>
-			</div>
-
+			<section>
+				<h1>thank you!</h1>
+			</section>
 		</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+	</div>
 
-		<script>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+	<script>
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls : true,
+			progress : true,
+			history : true,
+			center : true,
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+			theme : Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition : Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+			// Optional libraries used to extend on reveal.js
+			dependencies : [ {
+				src : 'lib/js/classList.js',
+				condition : function() {
+					return !document.body.classList;
+				}
+			}, {
+				src : 'plugin/markdown/showdown.js',
+				condition : function() {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src : 'plugin/markdown/markdown.js',
+				condition : function() {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src : 'plugin/highlight/highlight.js',
+				async : true,
+				callback : function() {
+					hljs.initHighlightingOnLoad();
+				}
+			}, {
+				src : 'plugin/zoom-js/zoom.js',
+				async : true,
+				condition : function() {
+					return !!document.body.classList;
+				}
+			}, {
+				src : 'plugin/notes/notes.js',
+				async : true,
+				condition : function() {
+					return !!document.body.classList;
+				}
+			}
+			// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+	</script>
 
-		</script>
-
-	</body>
+</body>
 </html>
